@@ -1,0 +1,117 @@
+{% include 'basic/Head.html' %}
+
+    <title>Clean Blog - Start Bootstrap Theme</title>
+
+    {% include 'basic/CSS.html' %}
+  </head>
+
+
+  <body>
+    
+    {% include 'basic/Nav.html' %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='contact-bg.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Contact me</h1>
+              <span class="subheading">Feel free to reach me out for anything related to the website !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+     <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          {% for feedback in feedbacks %}
+          <div class="post-preview">
+              <h2 class="post-title">
+                {{ feedback.subject }}
+              </h2>
+              <h3 class="post-subtitle">
+                {{ feedback.message }}
+              </h3>
+            <p class="post-meta">Posted by {{ feedback.name }}
+              on {{ feedback.date.strftime('%B %d, %Y') }}</p>
+          </div>
+          {% endfor %}          
+
+          <hr>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <!-- form -->
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8">
+              <div class="well well-sm">
+                  <form>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="name">
+                                  Name</label>
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required="required" />
+                          </div>
+                          <div class="form-group">
+                              <label for="email">
+                                  Email Address</label>
+                              <div class="input-group">
+                                  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                  </span>
+                                  <input type="email" name = "email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                          </div>
+                          <div class="form-group">
+                              <label for="subject">
+                                  Subject</label>
+                              
+                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Enter A Subject" required="required" />
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="name">
+                                  Message</label>
+                              <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                  placeholder="Message"></textarea>
+                          </div>
+                      </div>
+                      <div class="col-md-12">
+                          <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                              Send Message</button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <form>
+              <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+              <address>
+                  <strong>Twitter, Inc.</strong><br>
+                  795 Folsom Ave, Suite 600<br>
+                  San Francisco, CA 94107<br>
+                  <abbr title="Phone">
+                      P:</abbr>
+                  (850) 742-7410
+              </address>
+              <address>
+                  <strong>Abhishek Shree</strong><br>
+                  <a href="mailto:abhi1234456@gmail.com">abhi1234456@gmail.com</a>
+              </address>
+              </form>
+          </div>
+      </div>
+  </div>
+
+    <hr>
+
+{% include 'basic/Footer.html' %}

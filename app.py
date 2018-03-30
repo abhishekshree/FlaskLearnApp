@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+# from flask_mail import Mail, Message ## not in use anymore 
 from datetime import datetime
 
 app = Flask( __name__ )
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/blog.db'
 
 db = SQLAlchemy(app)
+# mail = Mail(app)
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +20,7 @@ class Post(db.Model):
 @app.route('/')
 def index():
 	posts = Post.query.order_by(Post.date_posted.desc()).all()
+	
 	return render_template('index.html', posts=posts)
 
 @app.route('/about')
@@ -46,6 +49,7 @@ def addpost():
 	db.session.commit()
 
 	return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
