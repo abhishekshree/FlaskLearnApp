@@ -34,14 +34,19 @@
               <h2 class="post-title">
                 {{ feedback.subject }}
               </h2>
-              <h3 class="post-subtitle">
-                {{ feedback.message }}
-              </h3>
+              <p style="font-family: sans-serif;"> {{ feedback.message }} </p> 
+
             <p class="post-meta">Posted by {{ feedback.name }}
               on {{ feedback.date.strftime('%B %d, %Y') }}</p>
+            
+            <a href="javascript:void(0);" class="btn" title="Email for {{ feedback.name }}" data-toggle="popover" data-trigger="hover" data-content="{{ feedback.email }}" >Click here</a>
           </div>
           {% endfor %}          
-
+          <script>
+              $(document).ready(function(){
+                  $('[data-toggle="popover"]').popover(); 
+              });
+          </script>
           <hr>
         </div>
       </div>
@@ -53,7 +58,7 @@
       <div class="row">
           <div class="col-md-8">
               <div class="well well-sm">
-                  <form>
+                  <form method="POST" action="{{ url_for('addFeed') }}">
                   <div class="row">
                       <div class="col-md-6">
                           <div class="form-group">

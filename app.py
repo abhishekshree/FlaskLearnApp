@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask( __name__ )
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/final.db'
 
 db = SQLAlchemy(app)
 # mail = Mail(app)
@@ -16,6 +16,16 @@ class Post(db.Model):
 	author = db.Column(db.String(50))
 	date_posted = db.Column(db.DateTime)
 	content = db.Column(db.Text)
+
+
+class Comment(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(50))
+	email = db.Column(db.String(200))
+	subject = db.Column(db.String(200))
+	message = db.Column(db.Text)
+	date = db.Column(db.DateTime)
+
 
 @app.route('/')
 def index():
@@ -46,6 +56,25 @@ def addpost():
 
 	p = Post(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now())
 	db.session.add(p)
+	db.session.commit()
+
+	return redirect(url_for('index'))
+
+@app.route('/feedback')
+def feed():
+	feedbacks = Comment.query.all()
+	return render_template('feedback.html', feedbacks=feedbacks)
+
+
+@app.route('/addFeed', methods = ['GET', 'POST'])
+def addFeed():
+	name = request.form['name']
+	email = request.form['email']
+	sub = request.form['subject']
+	message = request.form['message']
+
+	d = Comment(name=name, email=email, subject=sub, message=message, date=datetime.now())
+	db.session.add(d)
 	db.session.commit()
 
 	return redirect(url_for('index'))

@@ -2,7 +2,7 @@
 
     <title>Clean Blog - Start Bootstrap Theme</title>
 
-    {% include 'basic/CSS.html' %}
+  {% include 'basic/CSS.html' %}
   </head>
   <body>
 
@@ -39,6 +39,7 @@
             <p class="post-meta">Posted by {{ post.author }}
               on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
           </div>
+          <hr>
           {% endfor %}          
 
           <hr>
