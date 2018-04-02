@@ -31,7 +31,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           {% for feedback in feedbacks %}
           <div class="post-preview">
-              <h2 class="post-title">
+              <h2 class="post-title text-center">
                 {{ feedback.subject }}
               </h2>
               <p style="font-family: sans-serif;"> {{ feedback.message }} </p> 
@@ -41,6 +41,7 @@
             
             <a href="javascript:void(0);" class="btn" title="Email for {{ feedback.name }}" data-toggle="popover" data-trigger="hover" data-content="{{ feedback.email }}" >Click here</a>
           </div>
+          <hr>
           {% endfor %}          
           <script>
               $(document).ready(function(){
