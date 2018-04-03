@@ -70,7 +70,7 @@ def login():
 				login_user(user, remember=form.remember.data)
 				return redirect(url_for('admin'))
 
-		return "Invalid username or password"
+		return render_template('error.html')
 
 	return render_template('login.html', form=form)
 
@@ -140,6 +140,7 @@ def addFeed():
 
 	d = Comment(name=name, email=email, subject=sub, message=message, date=datetime.now())
 	db.session.add(d)
+
 	db.session.commit()
 
 	return redirect(url_for('index'))
@@ -147,7 +148,24 @@ def addFeed():
 @app.route('/admin')
 @login_required
 def admin():
-	return render_template('admin.html')
+	posts = Post.query.all()
+	return render_template('admin.html', posts=posts)
+
+
+@app.route('/delete/<int:post_id>')
+@login_required
+def delete(post_id):
+	r = Post.query.get_or_404(post_id)
+	db.session.delete(r)
+	db.session.commit()
+
+	return redirect(url_for('admin'))
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404
+
 
 @app.route('/logout')
 @login_required
