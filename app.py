@@ -6,20 +6,25 @@ from wtforms.validators import InputRequired , Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-
 # from flask_mail import Mail, Message ## not in use anymore 
 from datetime import datetime
 
+
 app = Flask( __name__ )
-app.config['SECRET_KEY'] = "Donottellanyone"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/database.db'
+# app.config['SECRET_KEY'] = "Donottellanyone"
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/database.db'
+
+app.config.from_pyfile('config.py')
+
 Bootstrap(app)
 db = SQLAlchemy(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 # mail = Mail(app)
+
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -38,15 +43,18 @@ class Comment(db.Model):
 	message = db.Column(db.Text)
 	date = db.Column(db.DateTime)
 
+
 class User(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(15), unique=True)
 	email = db.Column(db.String(100), unique=True)
 	password = db.Column(db.String(80))
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class LoginForm(FlaskForm):
 	username = StringField('username', validators=[InputRequired(), Length(min=4 , max=15)])
@@ -96,20 +104,25 @@ def index():
 	
 	return render_template('index.html', posts=posts)
 
+
 @app.route('/about')
 def about():
 	return render_template('about.html')
+
 
 @app.route('/post/<int:post_id>')
 def post(post_id):
 	post = Post.query.filter_by(id=post_id).one()
 	date_posted = post.date_posted.strftime('%B %d, %Y')
+
 	return render_template('post.html', post=post, date_posted=date_posted)
+
 
 @app.route('/add')
 @login_required
 def add():
 	return render_template('add.html')
+
 
 @app.route('/addpost', methods=['GET', 'POST'])
 @login_required
@@ -120,10 +133,12 @@ def addpost():
 	content = request.form['content']
 
 	p = Post(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now())
+
 	db.session.add(p)
 	db.session.commit()
 
 	return redirect(url_for('index'))
+
 
 @app.route('/feedback')
 def feed():
@@ -175,4 +190,4 @@ def logout():
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()
