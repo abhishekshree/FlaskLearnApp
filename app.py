@@ -6,7 +6,7 @@ from wtforms.validators import InputRequired , Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-# from flask_mail import Mail, Message ## not in use anymore 
+# from flask_mail import Mail, Message ## not in use anymore
 from datetime import datetime
 
 
@@ -65,7 +65,8 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
 	email = StringField('email', validators=[InputRequired(), Email(message='Invalid Email'), Length(max=100)])
 	username = StringField('username', validators=[InputRequired(), Length(min=4 , max=15)])
-	password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])	
+	password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -100,9 +101,15 @@ def signup():
 
 @app.route('/')
 def index():
-	posts = Post.query.order_by(Post.date_posted.desc()).all()
-	
+	posts = Post.query.order_by(Post.date_posted.desc()).limit(5)
+
 	return render_template('index.html', posts=posts)
+
+
+@app.route('/all')
+def all():
+	po = Post.query.order_by(Post.date_posted.desc()).all()
+	return render_template('all.html', p=po)
 
 
 @app.route('/about')
@@ -188,6 +195,3 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
-if __name__ == '__main__':
-	app.run()
