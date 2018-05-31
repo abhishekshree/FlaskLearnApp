@@ -7,4 +7,4 @@ The folder named blog is the virtual environment used while creating this projec
 
 The project is enriched with a protected admin login and registration system.
 
-#### Do visit [here](shreee.pythonanywhere.com) to see the app in action
+#### Do visit [here](http://shreee.pythonanywhere.com/) to see the app in action
