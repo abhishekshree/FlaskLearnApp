@@ -1,3 +1,3 @@
 DEBUG = True
-SQLALCHEMY_DATABASE_URI = 'sqlite://///home/shreee/FlaskLearnApp/database.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
 SECRET_KEY = 'Donottellanyone'

@@ -6,13 +6,10 @@ from wtforms.validators import InputRequired , Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-# from flask_mail import Mail, Message ## not in use anymore
 from datetime import datetime
 
 
 app = Flask( __name__ )
-# app.config['SECRET_KEY'] = "Donottellanyone"
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/abhishek/Videos/flaskWorks/Blog/database.db'
 
 app.config.from_pyfile('config.py')
 
@@ -23,7 +20,6 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-# mail = Mail(app)
 
 
 class Post(db.Model):
@@ -195,3 +191,5 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+if __name__ == "__main__":
+	app.run()

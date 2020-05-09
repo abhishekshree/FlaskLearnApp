@@ -1,12 +1,29 @@
 {% include 'basic/Head.html' %}
 
     <title>| Blogr |</title>
+    <style>
+      .sIcon {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-bottom: 20px;
+        /* font-size: 30px; */
+        width: 8%;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .sIcon:hover {
+        opacity: 0.8;
+        text-decoration: none;
+      }
+    </style>
 
     {% include 'basic/CSS.html' %}
   </head>
 
   <body>
-
 
     {% include 'basic/Nav.html' %}
 
@@ -18,7 +35,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
               <h1>About Me</h1>
-              <span class="subheading"> In the mist of all, lies a school-going kid </span>
+              <span class="subheading"> Vibing and learning, till whenever. </span>
             </div>
           </div>
         </div>
@@ -26,44 +43,50 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" style="font-family: 'Nunito Sans', sans-serif;">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Hello Everyone !</p>
+        <div class="clearfix">
+        <img src="{{ url_for('static', filename='Picture.jpg') }}" alt="My Image" class="img-fluid float-left mr-2 img-thumbnail" style = "width: 41%;">
+          <p>
+          Namaste !
+          I am a student with profound interest in building things. I have a keen interest in the field of web development. This blog is developed as a part of my full stack learning. I also have a handful experience at data structures and algorithms. I also enjoy competetive programming.
+          </p>
+          </div>
+          <p>
+          I prefer using Python as my primary language. I am also apt at C++ programming which I use most of the time for competetive programming. Also, I've learned Java 8, precisely Swing as a part of my school curriculum.
           <br>
-          <p>This is me Abhishek Shree and I am here to help people out in programming and other related stuff.</p>
-          <p>I am proficient in <mark>Python 3</mark>, <mark>C++</mark> and <mark>Java</mark> if programming languages are considered.</p>
-          <p>Also I have an expertise in the following fields:
-            <ul class="list">
-              <li>Django</li>
-              <li>Flask</li>
-              <li>HTML, CSS and Javascript</li>
-              <li>Vue.js</li>
-              <li>Frontend css tools like <mark>Bootstrap</mark> and <mark>Foundation</mark></li>
-              <li>D3.js</li>
-              <li>jQuery and other JS frameworks</li>
-            </ul>
+          Among web technologies, I use HTML5, CSS3, and JavaScript for most of my project frontend work. I also am frequently using Bootstrap and VueJS to enhance my web apps.
+          I use python based backend technologies like Flask and Django for backend. I also have an experience in PHP based backend tech (It was my first project) and MySQL for database requirements.
           </p>
           <p>
-            If you got any queries related to programming or you wish to communicate with me, contact me at:
-          <div>
-                <a href="https://www.instagram.com/_shree.e_/">
-                <button type="button" class="btn btn-large btn-outline-secondary" style="margin-bottom:10px;">Instagram</button></a>
-                <a href="https://www.quora.com/profile/Abhishek-Shree" >
-                  <button type="button" class="btn btn-large btn-outline-secondary" style="margin-bottom:10px;">Quora</button></a>
-
-                <a href="https://github.com/abhishekshree">
-                <button type="button" class="btn btn-large btn-outline-secondary" style="margin-bottom:10px;">Github</button></a>
-                <a href="https://twitter.com/_shree_e_">
-                <button type="button" class="btn btn-large btn-large btn-outline-secondary" style="margin-bottom:10px;">Twitter</button></a>
+          I was also selected among the top 10% of the programmers at Hackerearth. Apart from this I also was the national topper of Cyber Olympiad (India) in 2018.
+          <br>
+          <br>
+          Still, I'm a 17 year old, exploring various dimensions of interests. I have tried my hands on a few other works including translation(in French and German), transcripting, blogging, photoshop, inkspace, etc.
+          <hr>
+          I currently am willing to learn Data Science and Machine Learning. The field of Artificial Intelligence has always attracted me as it changes my perception of viewing things in life. 
+          </p>
+          <p>
+            Apart from my daily endeavor to be a better developer, I can be found reading obscure books, solving my rubik's cube, vibing to <a href="https://open.spotify.com/playlist/3Ev3P5Fq9CGHAP4brUrtYz">Ed and Taylor</a> or experimenting with design tools. 
+          </p>
+          <p>
+            Find me at:
+          <div style="display: flex; justify-content: center;" >
+                <a href="https://www.instagram.com/_shree.e_/" class="sIcon fa fa-instagram"></a>
+                <a href="https://www.hackerearth.com/@abhi1234456" class="sIcon fa fa-h-square"></a>
+                <a href="https://www.quora.com/profile/Abhishek-Shree" class="sIcon fa fa-quora"></a>
+                <a href="https://github.com/abhishekshree" class="sIcon fa fa-github"></a>
+                <a href="https://twitter.com/AbhishekShree10" class="sIcon fa fa-twitter"></a>
+                <a href="https://www.facebook.com/profile.php?id=100005639057729" class="sIcon fa fa-facebook"></a>
           </div>
 
-            I would to help anyone out with problems related to programming or web concepts.
+            I would love to help anyone out with problems related to programming or web concepts.
           </p>
           <hr>
             <blockquote class="blockquote">
-              I do stuff that I don't know how to.
-              <footer class="text-right">-Abhishek</footer>
+              Denting brains since 2002.
+              <footer class="text-right">Abhishek :)</footer>
             </blockquote>
         </div>
       </div>
