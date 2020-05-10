@@ -53,15 +53,15 @@ def load_user(user_id):
 
 
 class LoginForm(FlaskForm):
-	username = StringField('username', validators=[InputRequired(), Length(min=4 , max=15)])
-	password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-	remember = BooleanField('remember me')
+	username = StringField('Username', validators=[InputRequired(), Length(min=4 , max=15)])
+	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
+	remember = BooleanField('Remember Me')
 
 
 class RegisterForm(FlaskForm):
-	email = StringField('email', validators=[InputRequired(), Email(message='Invalid Email'), Length(max=100)])
-	username = StringField('username', validators=[InputRequired(), Length(min=4 , max=15)])
-	password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+	email = StringField('Email', validators=[InputRequired(), Email(message='Invalid Email'), Length(max=100)])
+	username = StringField('Username', validators=[InputRequired(), Length(min=4 , max=15)])
+	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
 
 
 
