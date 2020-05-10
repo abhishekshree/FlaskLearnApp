@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, make_response
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -9,7 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from datetime import datetime
 
 
-app = Flask( __name__ )
+app = Flask( __name__, static_folder='static' )
 
 app.config.from_pyfile('config.py')
 
@@ -192,9 +192,14 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route("/sitemap.xml")
-def sitemap():
-    return render_template('sitemap.xml')
-    
+def sitemap_xml():
+    response= make_response(render_template("sitemap.xml"))
+    response.headers['Content-Type'] = 'application/xml'
+    return response
+
+@app.route("/robots.txt")
+def robots_txt():
+    return render_template("robots.txt")
 
 if __name__ == "__main__":
 	app.run()
