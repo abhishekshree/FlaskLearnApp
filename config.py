@@ -1,3 +1,4 @@
 DEBUG = True
 SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
 SECRET_KEY = 'Donottellanyone'
+SEND_FILE_MAX_AGE_DEFAULT = 2592000
